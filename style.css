@@ -1,6 +1,6 @@
 body {
     background: rgb(30, 43, 161);
-    color: rgb(45, 45, 45);
+    color: rgb(0, 0, 0);
     padding: 10px;
     font-family: arial;
 }
@@ -32,7 +32,7 @@ h1 {
 }
 a {
     text-decoration: none;
-    color: #000000;
+    color: #ffffff;
 }
 
 /* main container area beneath menu */
