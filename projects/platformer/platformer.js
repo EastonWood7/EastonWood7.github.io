@@ -60,6 +60,8 @@ createPlatform(1280, 300, 100, 10);
 createPlatform(1340, 0, 100, 1000);
 createPlatform(800, 200, 400, 10);
 createPlatform(950, 170, 40, 30);
+createPlatform(200, 150, 150, 10);
+createPlatform(700, 150, 100, 10);
 
     // TODO 2
     // Create collectables
@@ -69,8 +71,9 @@ createPlatform(950, 170, 40, 30);
 createCollectable("database", 530, 600, 0.01, 1);
 createCollectable("steve", 950, 120, 0.005, 1);
 createCollectable("max", 870, 500, 0.01, 1);
+createCollectable("grace", 250, 90, 0.01, 1);
+createCollectable("kennedi", 730, 90, 0.01, 1);    
 
-    
     // TODO 3
     // Create cannons
     // You must decide the wall you want the cannon on, the position on the wall, and the time between shots in milliseconds
