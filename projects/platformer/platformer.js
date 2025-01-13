@@ -55,10 +55,10 @@ createPlatform(950, 480, 100, 60);
 createPlatform(1200, 650, 300, 100);
 createPlatform(1270, 550, 100, 100);
 createPlatform(800, 420, 100, 60);
-createPlatform(1050, 350, 35, 10);
+createPlatform(1050, 350, 50, 10);
 createPlatform(1280, 300, 100, 10);
 createPlatform(1340, 0, 100, 1000);
-createPlatform(800, 200, 400, 10);
+createPlatform(800, 200, 300, 10);
 createPlatform(950, 170, 40, 30);
 createPlatform(200, 150, 150, 10);
 createPlatform(700, 150, 100, 10);
@@ -79,9 +79,9 @@ createCollectable("redGhost", 730, 90, 0.01, 1);
     // You must decide the wall you want the cannon on, the position on the wall, and the time between shots in milliseconds
     // Your wall choices are: 'top' 'left' 'right' and 'bottom'
     // example usage: createCannon(side, position, delay, width, height)
-createCannon("right", 700, 3000);
-createCannon("bottom", 700, 1500);
-createCannon("top", 720, 1500);
+createCannon("right", 700, 5000);
+createCannon("bottom", 700, 2500);
+createCannon("top", 720, 2500);
 createCannon("bottom", 1280, 10);
     
     /////////////////////////////////////////////////
