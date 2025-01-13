@@ -100,4 +100,6 @@ var collectableList = {
   redGhost: {image: "images/collectables/redGhost.png" },
   blueGhost: {image: "images/collectables/blueGhost(1).png" },
   pellet: {image: "images/collectables/pellet.png" },
+  yellowGhost: {image: "images/collectables/yellowGhost.png" },
+  pinkGhost: {image: "images/collectables/pinkGhost.png" },
 };
