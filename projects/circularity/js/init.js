@@ -61,7 +61,7 @@ var init = function (window) {
             game.checkCirclePosition(circles[4]);
             */
             // TODO 9 : Iterate over the array
-           for (var i = 0; i < circles.length; i++) {
+           for (var i = 0; i < circles.length; i++) { // updates the physics and checks the positions constantly 
             physikz.updatePosition(circles[i]);
             game.checkCirclePosition(circles[i]);
            }
