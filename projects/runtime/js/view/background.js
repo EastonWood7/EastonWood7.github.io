@@ -94,9 +94,9 @@ var background = function (window) {
             }
             // TODO 4: Part 2 - Parallax
             for (var i = 0; i < buildings.length; i++) {
-                var building = buildings[i];
-                building.x -= 1;
-                if (building.x < -100) {
+                var building = buildings[i];//the individual index of the buildings array stored in the building variable
+                building.x -= 1;//subtracts 1 from the buildings x position
+                if (building.x < -100) {//resets the building to the right if it goes off the left side. 
                     building.x = canvasWidth;
                 }
             }
