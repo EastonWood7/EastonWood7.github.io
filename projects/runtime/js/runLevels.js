@@ -37,6 +37,57 @@ var runLevels = function (window) {
     createObstacles(800, groundY - 50, 25, 10);
     createObstacles(1000, groundY - 50, 25, 10);
 
+    function createEnemy(x, y, spin) {
+      var enemy = game.createGameItem("enemy", 25);//creates the enemy game item and adds it to the game
+      var redSquare = draw.rect(50, 50, "red");//creates a red square and stores it in the variable red square 
+      redSquare.x = -25;//offsets the image from the hitzone by -25
+      redSquare.y = -25;//offsets the image from the hitzone by -25
+      enemy.addChild(redSquare);//add the red square as a child to the enemy variable
+
+      enemy.x = x;//x position of enemy 
+      enemy.y = y;//y position of enemy
+      game.addGameItem(enemy);//adds enemy to the game
+      enemy.velocityX -= 3;//makes enemy move
+
+      if (spin === true) {//confirms if enemy should spin if spin is true
+        enemy.rotationalVelocity = 10;//rotates the enemy
+      };
+
+      enemy.onPlayerCollision = function () {
+        game.changeIntegrity(-10)//subtracts 10 from health when it hits hallebot
+      };
+      enemy.onProjectileCollision = function () {
+        game.increaseScore(100); //increases score by 100 when halle shoots the enemy
+        enemy.fadeOut();// makes the enemy fade out when they are shot
+        //enemy.shrink()
+        //enemy.flyTo(x,y)
+      };
+    }
+    createEnemy(400, groundY - 50, true);
+    createEnemy(700, groundY - 50, false);
+    createEnemy(900, groundY - 50, false);
+
+
+    function createReward(x, y, speed, health) {
+      var reward = game.createGameItem("reward", 25);//creates the reward game item and adds it to the game
+      var redSquare = draw.rect(50, 50, "blue");//creates a red square and stores it in the variable red square 
+      redSquare.x = -25;//offsets the image from the hitzone by -25
+      redSquare.y = -25;//offsets the image from the hitzone by -25
+      reward.addChild(redSquare);//add the red square as a child to the reward variable
+
+      reward.x = x;//x position of enemy 
+      reward.y = y;//y position of enemy
+      game.addGameItem(reward);//adds enemy to the game
+      reward.velocityX -= speed;//makes enemy move
+
+      reward.onPlayerCollision = function () {
+        game.changeIntegrity(health)//subtracts 10 from health when it hits hallebot
+        reward.fadeOut();// makes the enemy fade out when they are shot
+      };
+    }
+
+    createReward(500, groundY - 100, 3, 100);
+
     function startLevel() {
       // TODO 13 goes below here
 
