@@ -18,16 +18,24 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    var hitZoneSize = 25;//defines the size of the hitzone and assign it to a variable
-    var damageFromObstacle = 10;//defines the amount of damage from the obstacle
-    var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle hitzone using the size and damage parameters and assigns it to a variable
-    
-    sawBladeHitZone.x = 400;//set the x position of the sawblade 
-    sawBladeHitZone.y = groundY - 40;//set the y position of the sawblade
-    game.addGameItem(sawBladeHitZone);//adds the sawblade hitzone to the game
-
-    var obstacleImage = draw.bitmap("img/sawblade.png");//draws the sawblade and stores it to a variable
-    sawBladeHitZone.addChild(obstacleImage);//attaches the image to the sawblade hitzone
+    function createObstacles(x, y, hitSize, damage) {//create more parameters for personlization
+      var hitZoneSize = hitSize;//defines the size of the hitzone and assign it to a variable
+      var damageFromObstacle = damage;//defines the amount of damage from the obstacle
+      var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle hitzone using the size and damage parameters and assigns it to a variable
+      
+      obstacleHitZone.x = x;//set the x position of the obstacle 
+      obstacleHitZone.y = y;//set the y position of the obstacle
+      game.addGameItem(obstacleHitZone);//adds the obstacle hitzone to the game
+  
+      var obstacleImage = draw.bitmap("img/sawblade.png");//draws the obstacle and stores it to a variable
+      obstacleHitZone.addChild(obstacleImage);//attaches the image to the obstacle hitzone
+  
+      obstacleImage.x = -25;//positions the obstacle x on the hitzone
+      obstacleImage.y = -25;//positions the obstacle y on the hitzone
+    }
+    createObstacles(400, groundY - 50, 25, 10);
+    createObstacles(800, groundY - 50, 25, 10);
+    createObstacles(1000, groundY - 50, 25, 10);
 
     function startLevel() {
       // TODO 13 goes below here
