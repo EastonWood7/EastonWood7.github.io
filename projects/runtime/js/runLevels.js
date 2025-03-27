@@ -32,10 +32,7 @@ var runLevels = function (window) {
   
       obstacleImage.x = -25;//positions the obstacle x on the hitzone
       obstacleImage.y = -25;//positions the obstacle y on the hitzone
-    }
-    createObstacles(400, groundY - 50, 25, 10);
-    createObstacles(800, groundY - 50, 25, 10);
-    createObstacles(1000, groundY - 50, 25, 10);
+    };
 
     function createEnemy(x, y, spin) {
       var enemy = game.createGameItem("enemy", 25);//creates the enemy game item and adds it to the game
@@ -68,30 +65,60 @@ var runLevels = function (window) {
     createEnemy(900, groundY - 50, false);
 
 
-    function createReward(x, y, speed, health) {
+    function createReward(x, y, speed, health, points) {
       var reward = game.createGameItem("reward", 25);//creates the reward game item and adds it to the game
-      var redSquare = draw.rect(50, 50, "blue");//creates a red square and stores it in the variable red square 
-      redSquare.x = -25;//offsets the image from the hitzone by -25
-      redSquare.y = -25;//offsets the image from the hitzone by -25
-      reward.addChild(redSquare);//add the red square as a child to the reward variable
+      var blueSquare = draw.rect(50, 50, "blue");//creates a blue square and stores it in the variable blue square 
+      blueSquare.x = -25;//offsets the image from the hitzone by -25
+      blueSquare.y = -25;//offsets the image from the hitzone by -25
+      reward.addChild(blueSquare);//add the blue square as a child to the reward variable
 
-      reward.x = x;//x position of enemy 
-      reward.y = y;//y position of enemy
-      game.addGameItem(reward);//adds enemy to the game
-      reward.velocityX -= speed;//makes enemy move
+      reward.x = x;//x position of reward 
+      reward.y = y;//y position of reward
+      game.addGameItem(reward);//adds reward to the game
+      reward.velocityX -= speed;//makes reward move
 
       reward.onPlayerCollision = function () {
-        game.changeIntegrity(health)//subtracts 10 from health when it hits hallebot
-        reward.fadeOut();// makes the enemy fade out when they are shot
+        game.changeIntegrity(health)//adds 10 from health when it hits hallebot
+        game.increaseScore(points);
+        reward.fadeOut();// makes the reward fade out when they are shot
       };
     }
 
-    createReward(500, groundY - 100, 3, 100);
+    createReward(500, groundY - 100, 3, 100, 10);
+
+    function createLevel(x, y, speed, health) {
+      var level = game.createGameItem("level", 25);//creates the level game item and adds it to the game
+      var yellowSquare = draw.rect(50, 50, "yellow");//creates a yellow square and stores it in the variable yellow square 
+      yellowSquare.x = -25;//offsets the image from the hitzone by -25
+      yellowSquare.y = -25;//offsets the image from the hitzone by -25
+      level.addChild(yellowSquare);//add the yellow square as a child to the level variable
+
+      level.x = x;//x position of level 
+      level.y = y;//y position of level
+      game.addGameItem(level);//adds levels to the game
+      level.velocityX -= speed;//makes level move
+
+      level.onPlayerCollision = function () {
+        game.changeIntegrity(health)//adds 100 from health when it hits hallebot
+        level.fadeOut();// makes the level fade out when they are hit
+        startLevel();
+      };
+    }
+
+    createLevel(1350, groundY - 100, 3, 100);
 
     function startLevel() {
       // TODO 13 goes below here
 
+      var level = levelData[currentLevel];//returns the current level from the level data array and stores it in var level
+      var levelObjects = level.gameItems//retrieves the array of game items and stores it in level objects
 
+      for (var i = 0; i < levelObjects.length; i++) {
+        var element = levelObjects[i];
+        if (element.type === "sawblade") {
+          createObstacles(element.x, element.y, element.hitSize, element.damage);
+        };
+      };
 
       //////////////////////////////////////////////
       // DO NOT EDIT CODE BELOW HERE
