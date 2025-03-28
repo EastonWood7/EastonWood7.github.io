@@ -18,7 +18,7 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    function createObstacles(x, y, hitSize, damage) {//create more parameters for personlization
+    function createObstacles(x, y, hitSize, damage, image) {//create more parameters for personlization
       var hitZoneSize = hitSize;//defines the size of the hitzone and assign it to a variable
       var damageFromObstacle = damage;//defines the amount of damage from the obstacle
       var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle hitzone using the size and damage parameters and assigns it to a variable
@@ -27,11 +27,13 @@ var runLevels = function (window) {
       obstacleHitZone.y = y;//set the y position of the obstacle
       game.addGameItem(obstacleHitZone);//adds the obstacle hitzone to the game
   
-      var obstacleImage = draw.bitmap("img/sawblade.png");//draws the obstacle and stores it to a variable
+      var obstacleImage = draw.bitmap(image);//draws the obstacle and stores it to a variable
       obstacleHitZone.addChild(obstacleImage);//attaches the image to the obstacle hitzone
   
       obstacleImage.x = -25;//positions the obstacle x on the hitzone
       obstacleImage.y = -25;//positions the obstacle y on the hitzone
+      obstacleImage.scaleX = 1;
+      obstacleImage.scaleY = 1;
     };
 
     function createEnemy(x, y, spin) {
@@ -114,7 +116,7 @@ var runLevels = function (window) {
       for (var i = 0; i < levelObjects.length; i++) {
         var element = levelObjects[i];
         if (element.type === "sawblade") {//checks the type of key value of the game items objects to determine which objects to make
-          createObstacles(element.x, element.y, element.hitSize, element.damage);//if the if is true it will call the relevant function
+          createObstacles(element.x, element.y, element.hitSize, element.damage, element.image);//if the if is true it will call the relevant function
         };
 
         if (element.type === "enemy") {//checks the type of key value of the game items objects to determine which objects to make
