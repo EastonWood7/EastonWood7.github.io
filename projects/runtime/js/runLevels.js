@@ -60,9 +60,7 @@ var runLevels = function (window) {
         //enemy.flyTo(x,y)
       };
     }
-    createEnemy(400, groundY - 50, true);
-    createEnemy(700, groundY - 50, false);
-    createEnemy(900, groundY - 50, false);
+    
 
 
     function createReward(x, y, speed, health, points) {
@@ -79,12 +77,12 @@ var runLevels = function (window) {
 
       reward.onPlayerCollision = function () {
         game.changeIntegrity(health)//adds 10 from health when it hits hallebot
-        game.increaseScore(points);
+        game.increaseScore(points);//increases score
         reward.fadeOut();// makes the reward fade out when they are shot
       };
     }
 
-    createReward(500, groundY - 100, 3, 100, 10);
+    
 
     function createLevel(x, y, speed, health) {
       var level = game.createGameItem("level", 25);//creates the level game item and adds it to the game
@@ -105,7 +103,7 @@ var runLevels = function (window) {
       };
     }
 
-    createLevel(1350, groundY - 100, 3, 100);
+    
 
     function startLevel() {
       // TODO 13 goes below here
@@ -115,8 +113,20 @@ var runLevels = function (window) {
 
       for (var i = 0; i < levelObjects.length; i++) {
         var element = levelObjects[i];
-        if (element.type === "sawblade") {
-          createObstacles(element.x, element.y, element.hitSize, element.damage);
+        if (element.type === "sawblade") {//checks the type of key value of the game items objects to determine which objects to make
+          createObstacles(element.x, element.y, element.hitSize, element.damage);//if the if is true it will call the relevant function
+        };
+
+        if (element.type === "enemy") {//checks the type of key value of the game items objects to determine which objects to make
+          createEnemy(element.x, element.y, element.spin);//if the if is true it will call the relevant function
+        };
+
+        if (element.type === "reward") {//checks the type of key value of the game items objects to determine which objects to make
+          createReward(element.x, element.y, element.speed, element.health, element.points);//if the if is true it will call the relevant function
+        };
+
+        if (element.type === "level") {//checks the type of key value of the game items objects to determine which objects to make
+          createLevel(element.x, element.y, element.speed, element.health);//if the if is true it will call the relevant function
         };
       };
 
