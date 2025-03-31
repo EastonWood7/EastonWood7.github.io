@@ -36,7 +36,7 @@ var runLevels = function (window) {
       obstacleImage.scaleY = scale;
     };
 
-    function createEnemy(x, y, spin) {
+    function createEnemy(x, y, spin, image) {
       var enemy = game.createGameItem("enemy", 25);//creates the enemy game item and adds it to the game
       var redSquare = draw.rect(50, 50, "red");//creates a red square and stores it in the variable red square 
       redSquare.x = -25;//offsets the image from the hitzone by -25
@@ -124,7 +124,7 @@ var runLevels = function (window) {
         };
 
         if (element.type === "enemy") {//checks the type of key value of the game items objects to determine which objects to make
-          createEnemy(element.x, element.y, element.spin);//if the if is true it will call the relevant function
+          createEnemy(element.x, element.y, element.spin, element.image);//if the if is true it will call the relevant function
         };
 
         if (element.type === "reward") {//checks the type of key value of the game items objects to determine which objects to make
