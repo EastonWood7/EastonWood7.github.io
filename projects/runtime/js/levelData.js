@@ -15,15 +15,18 @@ var makeLevelData = function (window) {
         number: 1,
         speed: -3,
         gameItems: [
-          { type: "sawblade", x: 400, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png"},
-          { type: "sawblade", x: 800, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png"},
-          { type: "sawblade", x: 1000, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png"},
-          { type: "sawblade", x: 1200, y: groundY, hitSize: 25, damage: 10, image: "img/spikes.png"},
+          { type: "sawblade", x: 400, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png", scale: 1},
+          { type: "sawblade", x: 800, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png", scale: 1},
+          { type: "sawblade", x: 1000, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png", scale: 1},
+
+          { type: "spikes", x: 1200, y: groundY, hitSize: 32, damage: 10, image: "img/spikes.png", scale: 0.2},
 
           { type: "enemy", x: 400, y: groundY - 50, spin: true},
           { type: "enemy", x: 800, y: groundY - 50, spin: false},
           { type: "enemy", x: 1200, y: groundY - 50, spin: false},
+
           { type: "reward", x: 500, y: groundY - 100, speed: 3, health: 100, points: 10},
+          
           { type: "level", x: 1350, y: groundY - 100, speed: 3, health: 100},
         ],
       },
@@ -32,9 +35,9 @@ var makeLevelData = function (window) {
         number: 2,
         speed: -3,
         gameItems: [
-          { type: "sawblade", x: 400, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png"},
-          { type: "sawblade", x: 800, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png"},
-          { type: "sawblade", x: 1000, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png"},
+          { type: "sawblade", x: 400, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png", scale: 1},
+          { type: "sawblade", x: 800, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png", scale: 1},
+          { type: "sawblade", x: 1000, y: groundY, hitSize: 25, damage: 10, image: "img/sawblade.png", scale: 1},
         ],
       },
     ];

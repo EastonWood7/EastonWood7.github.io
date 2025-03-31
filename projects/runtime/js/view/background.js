@@ -59,21 +59,21 @@ var background = function (window) {
   
 
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            for (var i = 0; i < 5; i++) {
-                var buildingColors = ["red", "blue", "yellow", "orange", "purple"]
-                var buildingHeight = 300 * Math.random(); //assign 300 to height variable
-                var building = draw.rect(75, buildingHeight, buildingColors[i], "Black", 1); //draws a rectangle with 75 as the width buildingheight as the height, light grey as fill color, black as outline color
-                building.x = 200 * i;// multiplys 200 by the current i value and stores it as the building x
-                building.y = groundY - buildingHeight; // takes the ground y and subtracts the building height and stores it as the y value
-                background.addChild(building);// adds the building to the background container
-                buildings.push(building);// add the building to the building array for later
-              }
+            //for (var i = 0; i < 5; i++) {
+                //var buildingColors = ["red", "blue", "yellow", "orange", "purple"]
+                //var buildingHeight = 300 * Math.random(); //assign 300 to height variable
+                //var building = draw.rect(75, buildingHeight, buildingColors[i], "Black", 1); //draws a rectangle with 75 as the width buildingheight as the height, light grey as fill color, black as outline color
+                //building.x = 200 * i;// multiplys 200 by the current i value and stores it as the building x
+                //building.y = groundY - buildingHeight; // takes the ground y and subtracts the building height and stores it as the y value
+                //background.addChild(building);// adds the building to the background container
+                //buildings.push(building);// add the building to the building array for later
+              //}
             
             // TODO 3: Part 1 - Add a tree
-            tree = draw.bitmap("img/tree.png");//draws the tree bitmap and stores it to the variable tree
-            tree.x = canvas.width - 300;//places the tree off to the right
-            tree.y = groundY - 225;//places the tree at the ground
-            background.addChild(tree);//add the tree to the background container
+            //tree = draw.bitmap("img/tree.png");//draws the tree bitmap and stores it to the variable tree
+            //tree.x = canvas.width - 300;//places the tree off to the right
+            //tree.y = groundY - 225;//places the tree at the ground
+            //background.addChild(tree);//add the tree to the background container
             
         } // end of render function - DO NOT DELETE
         
@@ -87,19 +87,19 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 3: Part 2 - Move the tree!
-            tree.x -= 2; //moves the tree to the left by subtracting from where its at
+            //tree.x -= 2; //moves the tree to the left by subtracting from where its at
             
-            if (tree.x < -200) { 
-                tree.x = canvas.width;
-            }
+            //if (tree.x < -200) { 
+                //tree.x = canvas.width;
+            //}
             // TODO 4: Part 2 - Parallax
-            for (var i = 0; i < buildings.length; i++) {
-                var building = buildings[i];//the individual index of the buildings array stored in the building variable
-                building.x -= 1;//subtracts 1 from the buildings x position
-                if (building.x < -100) {//resets the building to the right if it goes off the left side. 
-                    building.x = canvasWidth;
-                }
-            }
+            //for (var i = 0; i < buildings.length; i++) {
+                //var building = buildings[i];//the individual index of the buildings array stored in the building variable
+                //building.x -= 1;//subtracts 1 from the buildings x position
+                //if (building.x < -100) {//resets the building to the right if it goes off the left side. 
+                    //building.x = canvasWidth;
+                //}
+            //}
         } // end of update function - DO NOT DELETE
         
         
