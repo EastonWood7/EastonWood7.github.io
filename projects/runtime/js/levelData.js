@@ -21,9 +21,9 @@ var makeLevelData = function (window) {
 
           { type: "spikes", x: 1100, y: groundY, hitSize: 32, damage: 10, image: "img/spikes.png", scale: 0.2},
 
-          { type: "enemy", x: 400, y: groundY - 50, spin: true},
-          { type: "enemy", x: 800, y: groundY - 50, spin: false},
-          { type: "enemy", x: 1200, y: groundY - 50, spin: false},
+          { type: "enemy", x: 400, y: groundY - 50, spin: true, image: "img/axe.png", ifAxe: true},
+          { type: "enemy", x: 800, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
+          { type: "enemy", x: 1200, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
 
           { type: "reward", x: 500, y: groundY - 100, speed: 3, health: 100, points: 10},
 

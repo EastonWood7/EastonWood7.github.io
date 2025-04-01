@@ -36,12 +36,22 @@ var runLevels = function (window) {
       obstacleImage.scaleY = scale;
     };
 
-    function createEnemy(x, y, spin, image) {
+    function createEnemy(x, y, spin, image, ifAxe) {
       var enemy = game.createGameItem("enemy", 25);//creates the enemy game item and adds it to the game
-      var redSquare = draw.rect(50, 50, "red");//creates a red square and stores it in the variable red square 
-      redSquare.x = -25;//offsets the image from the hitzone by -25
-      redSquare.y = -25;//offsets the image from the hitzone by -25
-      enemy.addChild(redSquare);//add the red square as a child to the enemy variable
+      //var redSquare = draw.rect(50, 50, "red");//creates a red square and stores it in the variable red square 
+      //redSquare.x = -25;//offsets the image from the hitzone by -25
+      //redSquare.y = -25;//offsets the image from the hitzone by -25
+      //enemy.addChild(redSquare);//add the red square as a child to the enemy variable
+
+      var enemyImage = draw.bitmap(image);//draws the obstacle and stores it to a variable
+      enemy.addChild(enemyImage);//attaches the image to the obstacle hitzone
+      if (ifAxe === false) {
+        enemyImage.x = -90;//positions the obstacle x on the hitzone
+        enemyImage.y = -70;//positions the obstacle y on the hitzone
+      } else {
+        enemyImage.x = -40;
+        enemyImage.y = -30;
+      }
 
       enemy.x = x;//x position of enemy 
       enemy.y = y;//y position of enemy
@@ -49,7 +59,7 @@ var runLevels = function (window) {
       enemy.velocityX -= 3;//makes enemy move
 
       if (spin === true) {//confirms if enemy should spin if spin is true
-        enemy.rotationalVelocity = 10;//rotates the enemy
+        enemy.rotationalVelocity = -10;//rotates the enemy
       };
 
       enemy.onPlayerCollision = function () {
@@ -124,7 +134,7 @@ var runLevels = function (window) {
         };
 
         if (element.type === "enemy") {//checks the type of key value of the game items objects to determine which objects to make
-          createEnemy(element.x, element.y, element.spin, element.image);//if the if is true it will call the relevant function
+          createEnemy(element.x, element.y, element.spin, element.image, element.ifAxe);//if the if is true it will call the relevant function
         };
 
         if (element.type === "reward") {//checks the type of key value of the game items objects to determine which objects to make
