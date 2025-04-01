@@ -75,17 +75,31 @@ var runLevels = function (window) {
     
 
 
-    function createReward(x, y, speed, health, points) {
+    function createReward(x, y, speed, health, points, image, shield, scale) {
       var reward = game.createGameItem("reward", 25);//creates the reward game item and adds it to the game
-      var blueSquare = draw.rect(50, 50, "blue");//creates a blue square and stores it in the variable blue square 
-      blueSquare.x = -25;//offsets the image from the hitzone by -25
-      blueSquare.y = -25;//offsets the image from the hitzone by -25
-      reward.addChild(blueSquare);//add the blue square as a child to the reward variable
+      //var blueSquare = draw.rect(50, 50, "blue");//creates a blue square and stores it in the variable blue square 
+      //blueSquare.x = -25;//offsets the image from the hitzone by -25
+      //blueSquare.y = -25;//offsets the image from the hitzone by -25
+      //reward.addChild(blueSquare);//add the blue square as a child to the reward variable
 
       reward.x = x;//x position of reward 
       reward.y = y;//y position of reward
       game.addGameItem(reward);//adds reward to the game
       reward.velocityX -= speed;//makes reward move
+
+      var rewardImage = draw.bitmap(image);//draws the obstacle and stores it to a variable
+      reward.addChild(rewardImage);//attaches the image to the obstacle hitzone
+      if (shield === false) {
+        rewardImage.x = -24;//positions the obstacle x on the hitzone
+        rewardImage.y = -20;//positions the obstacle y on the hitzone
+        rewardImage.scaleX = scale;
+        rewardImage.scaleY = scale;
+      } else {
+        rewardImage.x = 0;
+        rewardImage.y = 0;
+        rewardImage.scaleX = scale;
+        rewardImage.scaleY = scale;
+      }
 
       reward.onPlayerCollision = function () {
         game.changeIntegrity(health)//adds 10 from health when it hits hallebot
@@ -138,7 +152,7 @@ var runLevels = function (window) {
         };
 
         if (element.type === "reward") {//checks the type of key value of the game items objects to determine which objects to make
-          createReward(element.x, element.y, element.speed, element.health, element.points);//if the if is true it will call the relevant function
+          createReward(element.x, element.y, element.speed, element.health, element.points, element.image, element.shield, element.scale);//if the if is true it will call the relevant function
         };
 
         if (element.type === "level") {//checks the type of key value of the game items objects to determine which objects to make

@@ -25,7 +25,7 @@ var makeLevelData = function (window) {
           { type: "enemy", x: 800, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
           { type: "enemy", x: 1200, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
 
-          { type: "reward", x: 500, y: groundY - 100, speed: 3, health: 100, points: 10},
+          { type: "reward", x: 500, y: groundY - 100, speed: 3, health: 100, points: 10, image: "img/crown.png", shield: false, scale: 0.4},
 
           { type: "level", x: 1350, y: groundY - 100, speed: 3, health: 100},
         ],
