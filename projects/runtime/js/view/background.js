@@ -30,6 +30,8 @@ var background = function (window) {
         //////////////////////////////////////////////////////////////////
         // TODO (several):
         var tree;
+        var castle;
+        var castle2;
         var buildings = [];
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -74,6 +76,20 @@ var background = function (window) {
             //tree.x = canvas.width - 300;//places the tree off to the right
             //tree.y = groundY - 225;//places the tree at the ground
             //background.addChild(tree);//add the tree to the background container
+
+            castle = draw.bitmap("img/castle.png");
+            castle.scaleX = 7.5;
+            castle.scaleY = 2.8;
+            castle.x = 0;
+            castle.y = 0;
+            background.addChild(castle);
+
+            castle2 = draw.bitmap("img/castle.png");
+            castle2.scaleX = 7.5;
+            castle2.scaleY = 2.8;
+            castle2.x = 1900;
+            castle2.y = 0;
+            background.addChild(castle2);
             
         } // end of render function - DO NOT DELETE
         
@@ -100,6 +116,18 @@ var background = function (window) {
                     //building.x = canvasWidth;
                 //}
             //}
+
+            castle.x -= 1.3;
+            castle2.x -= 1.3;
+
+            if (castle.x < -1900) {
+                castle.x = canvasWidth;
+            };
+
+            if (castle2.x < -1900) {
+                castle2.x = canvasWidth;
+            };
+
         } // end of update function - DO NOT DELETE
         
         
