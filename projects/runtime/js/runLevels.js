@@ -68,6 +68,11 @@ var runLevels = function (window) {
       enemy.onProjectileCollision = function () {
         game.increaseScore(100); //increases score by 100 when halle shoots the enemy
         enemy.fadeOut();// makes the enemy fade out when they are shot
+        if (ifAxe === false) {
+          createReward(enemy.x - 90, groundY - 50, 2, 10, 10, "img/shield.png", true, 0.6);
+          game.changeIntegrity(10);
+          game.increaseScore(10);
+        };
         //enemy.shrink()
         //enemy.flyTo(x,y)
       };
@@ -90,13 +95,13 @@ var runLevels = function (window) {
       var rewardImage = draw.bitmap(image);//draws the obstacle and stores it to a variable
       reward.addChild(rewardImage);//attaches the image to the obstacle hitzone
       if (shield === false) {
-        rewardImage.x = -24;//positions the obstacle x on the hitzone
-        rewardImage.y = -20;//positions the obstacle y on the hitzone
+        rewardImage.x = -24;
+        rewardImage.y = -20;
         rewardImage.scaleX = scale;
         rewardImage.scaleY = scale;
       } else {
-        rewardImage.x = 0;
-        rewardImage.y = 0;
+        rewardImage.x = -60;
+        rewardImage.y = -50;
         rewardImage.scaleX = scale;
         rewardImage.scaleY = scale;
       }
@@ -104,7 +109,7 @@ var runLevels = function (window) {
       reward.onPlayerCollision = function () {
         game.changeIntegrity(health)//adds 10 from health when it hits hallebot
         game.increaseScore(points);//increases score
-        reward.fadeOut();// makes the reward fade out when they are shot
+        reward.fadeOut();// makes the reward fade out when they are hit
       };
     }
 
