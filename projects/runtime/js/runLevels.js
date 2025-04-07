@@ -69,7 +69,7 @@ var runLevels = function (window) {
         game.increaseScore(100); //increases score by 100 when halle shoots the enemy
         enemy.fadeOut();// makes the enemy fade out when they are shot
         if (ifAxe === false) {
-          createReward(enemy.x - 90, groundY - 50, 2, 10, 10, "img/shield.png", true, 0.6);
+          createReward(enemy.x - 60, groundY - 50, 2, 10, 10, "img/shield.png", true, 0.6);
           game.changeIntegrity(10);
           game.increaseScore(10);
         };
