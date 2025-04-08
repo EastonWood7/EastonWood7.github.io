@@ -16,18 +16,21 @@ var makeLevelData = function (window) {
         speed: -3,
         gameItems: [
           { type: "sawblade", x: 400, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
-          { type: "sawblade", x: 600, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
           { type: "sawblade", x: 800, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
+          { type: "sawblade", x: 1400, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
+          { type: "sawblade", x: 1800, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
+          { type: "sawblade", x: 2000, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
+          { type: "spikes", x: 1600, y: groundY, hitSize: 32, damage: 10, image: "img/spikes.png", scale: 0.2},
 
-          { type: "spikes", x: 1100, y: groundY, hitSize: 32, damage: 10, image: "img/spikes.png", scale: 0.2},
-
-          { type: "enemy", x: 400, y: groundY - 50, spin: true, image: "img/axe.png", ifAxe: true},
-          { type: "enemy", x: 800, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
+          { type: "enemy", x: 600, y: groundY - 110, spin: true, image: "img/axe.png", ifAxe: true},
+          { type: "enemy", x: 2200, y: groundY - 110, spin: true, image: "img/axe.png", ifAxe: true},
+          { type: "enemy", x: 900, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
           { type: "enemy", x: 1200, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
 
-          { type: "reward", x: 500, y: groundY - 100, speed: 3, health: 100, points: 10, image: "img/crown.png", shield: false, scale: 0.4},
+          { type: "reward", x: 1300, y: groundY - 100, speed: 2, health: 100, points: 10, image: "img/crown.png", shield: false, scale: 0.4},
 
-          { type: "level", x: 1350, y: groundY - 100, speed: 3, health: 100},
+          { type: "level", x: 3000, y: groundY - 65, speed: 2, health: 100, image: "img/throne.png"},
+          
         ],
       },
       {

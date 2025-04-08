@@ -56,7 +56,7 @@ var runLevels = function (window) {
       enemy.x = x;//x position of enemy 
       enemy.y = y;//y position of enemy
       game.addGameItem(enemy);//adds enemy to the game
-      enemy.velocityX -= 3;//makes enemy move
+      enemy.velocityX -= 2;//makes enemy move
 
       if (spin === true) {//confirms if enemy should spin if spin is true
         enemy.rotationalVelocity = -10;//rotates the enemy
@@ -115,12 +115,19 @@ var runLevels = function (window) {
 
     
 
-    function createLevel(x, y, speed, health) {
+    function createLevel(x, y, speed, health, image) {
       var level = game.createGameItem("level", 25);//creates the level game item and adds it to the game
-      var yellowSquare = draw.rect(50, 50, "yellow");//creates a yellow square and stores it in the variable yellow square 
-      yellowSquare.x = -25;//offsets the image from the hitzone by -25
-      yellowSquare.y = -25;//offsets the image from the hitzone by -25
-      level.addChild(yellowSquare);//add the yellow square as a child to the level variable
+      //var yellowSquare = draw.rect(50, 50, "yellow");//creates a yellow square and stores it in the variable yellow square 
+      //yellowSquare.x = -25;//offsets the image from the hitzone by -25
+      //yellowSquare.y = -25;//offsets the image from the hitzone by -25
+      //level.addChild(yellowSquare);//add the yellow square as a child to the level variable
+
+      var levelImage = draw.bitmap(image);//draws the obstacle and stores it to a variable
+      level.addChild(levelImage);//attaches the image to the obstacle hitzone
+      levelImage.x = -100;
+      levelImage.y = -100;
+      levelImage.scaleX = 0.8;
+      levelImage.scaleY = 0.8;
 
       level.x = x;//x position of level 
       level.y = y;//y position of level
@@ -133,7 +140,7 @@ var runLevels = function (window) {
         startLevel();
       };
     }
-
+   
     
 
     function startLevel() {
@@ -161,7 +168,7 @@ var runLevels = function (window) {
         };
 
         if (element.type === "level") {//checks the type of key value of the game items objects to determine which objects to make
-          createLevel(element.x, element.y, element.speed, element.health);//if the if is true it will call the relevant function
+          createLevel(element.x, element.y, element.speed, element.health, element.image);//if the if is true it will call the relevant function
         };
       };
 
