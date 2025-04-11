@@ -1,3 +1,5 @@
+
+
 var background = function (window) {
     'use strict';
     
@@ -33,6 +35,7 @@ var background = function (window) {
         var castle;
         var castle2;
         var buildings = [];
+        var ending;
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
         function render() {
@@ -91,6 +94,9 @@ var background = function (window) {
             castle2.y = 0;
             background.addChild(castle2);
             
+            
+
+            
         } // end of render function - DO NOT DELETE
         
         
@@ -127,6 +133,7 @@ var background = function (window) {
             if (castle2.x < -1900) {
                 castle2.x = canvasWidth;
             };
+
 
         } // end of update function - DO NOT DELETE
         

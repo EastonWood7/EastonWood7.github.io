@@ -136,6 +136,7 @@ var runLevels = function (window) {
 
       level.onPlayerCollision = function () {
         game.changeIntegrity(health)//adds 100 from health when it hits hallebot
+        game.increaseScore(100);
         level.fadeOut();// makes the level fade out when they are hit
         startLevel();
       };

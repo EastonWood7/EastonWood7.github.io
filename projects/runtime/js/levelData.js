@@ -50,8 +50,7 @@ var makeLevelData = function (window) {
           { type: "reward", x: 3600, y: groundY - 150, speed: 2, health: 10, points: 10, image: "img/crown.png", shield: false, scale: 0.4},
           { type: "reward", x: 3900, y: groundY - 100, speed: 2, health: 10, points: 10, image: "img/crown.png", shield: false, scale: 0.4},
 
-          { type: "level", x: 5000, y: groundY - 65, speed: 2, health: 100, image: "img/throne.png"},
-          
+          { type: "level", x: 4800, y: groundY - 65, speed: 2, health: 100, image: "img/throne.png"},
         ],
       },
       {
@@ -59,9 +58,21 @@ var makeLevelData = function (window) {
         number: 2,
         speed: -3,
         gameItems: [
+
           { type: "sawblade", x: 400, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
           { type: "sawblade", x: 800, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
-          { type: "sawblade", x: 1000, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
+          { type: "sawblade", x: 1400, y: groundY, hitSize: 25, damage: 10, image: "img/torch.png", scale: 0.4},
+          { type: "spikes", x: 1600, y: groundY, hitSize: 32, damage: 10, image: "img/spikes.png", scale: 0.2},
+          { type: "spikes", x: 2100, y: groundY, hitSize: 32, damage: 10, image: "img/spikes.png", scale: 0.2},
+
+          { type: "enemy", x: 900, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
+          { type: "enemy", x: 1100, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
+          { type: "enemy", x: 1800, y: groundY - 50, spin: false, image: "img/knight.png", ifAxe: false},
+          { type: "enemy", x: 1250, y: groundY - 110, spin: true, image: "img/axe.png", ifAxe: true},
+
+          { type: "reward", x: 600, y: groundY - 80, speed: 2, health: 10, points: 10, image: "img/crown.png", shield: false, scale: 0.4},
+          { type: "reward", x: 1900, y: groundY - 80, speed: 2, health: 10, points: 10, image: "img/crown.png", shield: false, scale: 0.4},
+
         ],
       },
     ];
