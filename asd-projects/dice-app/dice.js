@@ -10,6 +10,7 @@ function makeDot(top, left, elementID) {
       width: "15px",
       backgroundColor: "black",
       position: "absolute",
+      //borderRadius:
       top: top,
       left: left,
     })
@@ -57,3 +58,9 @@ function handleClick(){
 };
 
 $("#die").on("click", handleClick);
+
+function handleClick2(){
+  rollDie("#die2");
+};
+
+$("#die2").on("click", handleClick2);
