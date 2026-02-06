@@ -8,6 +8,8 @@
 var board = $("#board");
 var scoreElement = $("#score");
 var highScoreElement = $("#highScore");
+var colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+var colorIndex = 0;
 
 // Game Variables
 var score = 0; // variable to keep track of the score
@@ -204,10 +206,16 @@ function handleAppleCollision() {
   apple.element.remove();
   makeApple();
 
+  if (colorIndex === colors.length + 1) {
+    colorIndex = 0;
+  }
+  colorIndex ++;
+
   var row = snake.tail.row;
   var column = snake.tail.column;
   
   makeSnakeSquare(row, column);
+  snake.tail.element.css("backgroundColor", colors[colorIndex]);
 }
 
 function hasCollidedWithSnake() {
@@ -361,8 +369,6 @@ for (var i = 0; i < snake.body.length; i++) {
     spaceIsAvailable = false;
   }
 }
-
-
   }
 
   return randomPosition;
