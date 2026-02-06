@@ -10,11 +10,12 @@ function makeDot(top, left, elementID) {
       width: "15px",
       backgroundColor: "black",
       position: "absolute",
-      //borderRadius:
       top: top,
       left: left,
     })
   .appendTo(elementID);
+  
+
 }
 
 function rollDie(dieID){
