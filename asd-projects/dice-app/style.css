@@ -9,5 +9,7 @@
   height: 115px;
   width: 115px;
   background-color: lightgray; /* Feel free to customize */
-  position: relative;
+  position: absolute;
+  left: 200px;
+  top: 7px;
 }

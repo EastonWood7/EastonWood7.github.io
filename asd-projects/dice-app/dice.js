@@ -6,6 +6,7 @@ $(document).ready(function () {
 function makeDot(top, left, elementID) {
   $("<div>")
     .css({
+      borderRadius: "50%",
       height: "15px",
       width: "15px",
       backgroundColor: "black",
