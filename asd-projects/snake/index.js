@@ -266,6 +266,8 @@ function endGame() {
 
   // restart the game after 500 ms
   setTimeout(init, 500);
+
+  colorIndex = -1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
