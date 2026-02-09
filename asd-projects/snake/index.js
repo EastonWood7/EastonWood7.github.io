@@ -30,6 +30,10 @@ var KEY = {
   UP: 38,
   RIGHT: 39,
   DOWN: 40,
+  A: 65,
+  S: 83,
+  W: 87,
+  D: 68
 };
 
 // interval variable required for stopping the update function when the game ends
@@ -96,13 +100,23 @@ function checkForNewDirection(event) {
   perpendicular to the current direction
   */
 
-  if (activeKey === KEY.LEFT) {
+  if (activeKey === KEY.LEFT) {//arrow keys
     snake.head.direction = "left";
   } else if (activeKey === KEY.RIGHT) {
     snake.head.direction = "right";
   } else if (activeKey === KEY.UP) {
     snake.head.direction = "up";
   } else if (activeKey === KEY.DOWN) {
+    snake.head.direction = "down";
+  }
+
+  if (activeKey === KEY.A) {//aswd keys
+    snake.head.direction = "left";
+  } else if (activeKey === KEY.D) {
+    snake.head.direction = "right";
+  } else if (activeKey === KEY.W) {
+    snake.head.direction = "up";
+  } else if (activeKey === KEY.S) {
     snake.head.direction = "down";
   }
 
@@ -161,7 +175,7 @@ function moveBodyAToBodyB (bodyA, bodyB) {
   bodyA.direction = bodyB.direction;
 };
 
-console.log("Moving body A to body B...");
+//console.log("Moving body A to body B...");
 setTimeout(() => {
   moveBodyAToBodyB(snake.body[1], snake.head);
   repositionSquare(snake.body[1]);
@@ -325,7 +339,11 @@ function handleKeyDown(event) {
     event.which === KEY.LEFT ||
     event.which === KEY.RIGHT ||
     event.which === KEY.UP ||
-    event.which === KEY.DOWN
+    event.which === KEY.DOWN ||
+    event.which === KEY.A ||
+    event.which === KEY.S ||
+    event.which === KEY.D ||
+    event.which === KEY.W
   ) {
     started = true; // the game starts when the first key is pressed
   }
