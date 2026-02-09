@@ -8,8 +8,8 @@
 var board = $("#board");
 var scoreElement = $("#score");
 var highScoreElement = $("#highScore");
-var colors = ["red", "orange", "yellow", "green", "blue", "purple"];
-var colorIndex = 0;
+var colors = ["green", "teal", "blue", "purple", "#4B0082", "#450147", "maroon", "red", "orange", "gold", "yellow", "lime"];
+var colorIndex = -1;
 
 // Game Variables
 var score = 0; // variable to keep track of the score
@@ -206,11 +206,11 @@ function handleAppleCollision() {
   apple.element.remove();
   makeApple();
 
+  colorIndex ++;
   if (colorIndex === colors.length + 1) {
     colorIndex = 0;
   }
-  colorIndex ++;
-
+  
   var row = snake.tail.row;
   var column = snake.tail.column;
   
