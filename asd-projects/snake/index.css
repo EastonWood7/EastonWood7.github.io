@@ -10,7 +10,7 @@ body {
   background-color: black;
 }
 
-#score, #highScore {
+#score, #highScore, #snakeGame {
   color: white;
 }
 
