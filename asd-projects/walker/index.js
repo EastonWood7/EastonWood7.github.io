@@ -103,16 +103,16 @@ function runProgram(){
   }
 
   function wallCollision () {
-    if (walker.x >= $("#board").width() - $("#walker").width()) {
+    if (walker.x > $("#board").width() - $("#walker").width()) {
       walker.x -= walker.speedX;
     }
-    if (walker.x <= 0) {
+    if (walker.x < 0) {
       walker.x -= walker.speedX;
     }
-    if (walker.y >= $("#board").height() - $("#walker").height()) {
+    if (walker.y > $("#board").height() - $("#walker").height()) {
       walker.y -= walker.speedY;
     }
-    if (walker.y <= 0) {
+    if (walker.y < 0) {
       walker.y -= walker.speedY;
     }
   }
