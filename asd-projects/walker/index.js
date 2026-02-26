@@ -36,8 +36,8 @@ function runProgram(){
   }
 
   let walker2 = {
-    x: 0,
-    y: 0,
+    x: 200,
+    y: 200,
     speedX: 0,
     speedY: 0
   }
@@ -69,8 +69,10 @@ function runProgram(){
     repositionGameItem();
     repositionGameItem2();
     wallCollision();
+    wallCollision2();
     redrawGameItem();
     redrawGameItem2();
+    tag()
   }
   
   /* 
@@ -165,6 +167,27 @@ function runProgram(){
     }
     if (walker.y < 0) {
       walker.y -= walker.speedY;
+    }
+  }
+
+  function wallCollision2 () {
+    if (walker2.x > $("#board").width() - $("#walker2").width()) {
+      walker2.x -= walker2.speedX;
+    }
+    if (walker2.x < 0) {
+      walker2.x -= walker2.speedX;
+    }
+    if (walker2.y > $("#board").height() - $("#walker2").height()) {
+      walker2.y -= walker2.speedY;
+    }
+    if (walker2.y < 0) {
+      walker2.y -= walker2.speedY;
+    }
+  }
+
+  function tag () {
+    if (walker.x === walker2.x && walker.y === walker2.y) {
+      endGame();
     }
   }
 
