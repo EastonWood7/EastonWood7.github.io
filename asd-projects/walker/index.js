@@ -1,5 +1,4 @@
 /* global $, sessionStorage */
-
 $(document).ready(runProgram); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
   
 function runProgram(){
@@ -32,14 +31,16 @@ function runProgram(){
     x: 0,
     y: 0,
     speedX: 0,
-    speedY: 0
+    speedY: 0,
+    it: true
   }
 
   let walker2 = {
-    x: 200,
-    y: 200,
+    x: $("#board").width() - $("#walker2").width(),
+    y: $("#board").height() - $("#walker2").height(),
     speedX: 0,
-    speedY: 0
+    speedY: 0,
+    it: false
   }
 
   // one-time setup
@@ -65,14 +66,18 @@ function runProgram(){
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
-  function newFrame() {
+  function newFrame() {//updates the website 60 times a second
     repositionGameItem();
     repositionGameItem2();
     wallCollision();
     wallCollision2();
     redrawGameItem();
     redrawGameItem2();
-    tag()
+  
+    if (tag (walker, walker2)) {
+      changeColor();
+    } 
+
   }
   
   /* 
@@ -81,7 +86,7 @@ function runProgram(){
   
   Note: You can have multiple event handlers for different types of events.
   */
-  function handleKeyDown(event) {
+  function handleKeyDown(event) {//registars the the keys to move the 1st walker being pressed
     if (event.which === KEY.LEFT) {
       walker.speedX = -5;
     } else if (event.which === KEY.RIGHT) {
@@ -93,7 +98,7 @@ function runProgram(){
     } 
   }
 
-  function handleKeyDown2(event) {
+  function handleKeyDown2(event) {//registars the the keys to move the 2nd walker being pressed
     if (event.which === KEY2.LEFT) {
       walker2.speedX = -5;
     } else if (event.which === KEY2.RIGHT) {
@@ -105,7 +110,7 @@ function runProgram(){
     }
   }
 
-  function handleKeyUp(event) {
+  function handleKeyUp(event) {//registars the key being unpressed to move the first walker
     if (event.which === KEY.LEFT) {
       walker.speedX = 0;
     } else if (event.which === KEY.RIGHT) {
@@ -119,7 +124,7 @@ function runProgram(){
     }
   }
 
-  function handleKeyUp2(event) {
+  function handleKeyUp2(event) {//registars the key being unpressed to move the 2nd walker
     if (event.which === KEY2.LEFT) {
       walker2.speedX = 0;
     } else if (event.which === KEY2.RIGHT) {
@@ -135,27 +140,27 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  function repositionGameItem () {
+  function repositionGameItem () {//changes the first walkers position
     walker.x += walker.speedX;
     walker.y += walker.speedY;
   }
 
-  function repositionGameItem2 () {
+  function repositionGameItem2 () {// changes the 2nd walkers psoition
     walker2.x += walker2.speedX;
     walker2.y += walker2.speedY;
   }
 
-  function redrawGameItem () {
+  function redrawGameItem () {//updates the first walker
     $("#walker").css("left", walker.x);
     $("#walker").css("top", walker.y);
   }
 
-  function redrawGameItem2 () {
+  function redrawGameItem2 () {//updates the 2nd walker
     $("#walker2").css("left", walker2.x);
     $("#walker2").css("top", walker2.y);
   }
 
-  function wallCollision () {
+  function wallCollision () {//checks if the first walker collides with the wall
     if (walker.x > $("#board").width() - $("#walker").width()) {
       walker.x -= walker.speedX;
     }
@@ -170,7 +175,7 @@ function runProgram(){
     }
   }
 
-  function wallCollision2 () {
+  function wallCollision2 () {//checks if the 2nd walker collides with the wall
     if (walker2.x > $("#board").width() - $("#walker2").width()) {
       walker2.x -= walker2.speedX;
     }
@@ -185,10 +190,27 @@ function runProgram(){
     }
   }
 
-  function tag () {
-    if (walker.x === walker2.x && walker.y === walker2.y) {
-      endGame();
+  function tag (a, b) {//checks if the 2 walkers collide
+    return (
+      a.x <= b.x + $("#walker").width() &&
+      a.x + $("#walker").width() >= b.x &&
+      a.y <= b.y + $("#walker").height() &&
+      a.y + $("#walker").height() >= b.y
+    )
+    
+  }
+
+  function changeColor () {//changes the color if they collide
+    if (walker.it === true) {
+      $("#walker").css("backgroundColor", "red");
+      $("#walker2").css("backgroundColor", "green");
+      walker.it = false
+    } else {
+      $("#walker2").css("backgroundColor", "red");
+      $("#walker").css("backgroundColor", "teal");
+      walker.it = true 
     }
+    console.log("You're it");
   }
 
   function endGame() {
