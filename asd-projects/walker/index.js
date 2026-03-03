@@ -73,10 +73,7 @@ function runProgram(){
     wallCollision2();
     redrawGameItem();
     redrawGameItem2();
-  
-    if (tag (walker, walker2)) {
-      changeColor();
-    } 
+    tagged(walker, walker2);
 
   }
   
@@ -211,6 +208,12 @@ function runProgram(){
       walker.it = true 
     }
     console.log("You're it");
+  }
+
+  function tagged (w1, w2) {
+    if (tag(w1, w2)) {
+      changeColor();
+    }
   }
 
   function endGame() {
