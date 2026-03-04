@@ -15,14 +15,10 @@ function runProgram(){
     RIGHT: 39,
     UP: 38,
     DOWN: 40,
-    ENTER: 13
-  }
-
-  const KEY2 = {
-    LEFT: 65,
-    RIGHT: 68,
-    UP: 87,
-    DOWN: 83,
+    A: 65,
+    D: 68,
+    W: 87,
+    S: 83,
     ENTER: 13
   }
   
@@ -32,7 +28,8 @@ function runProgram(){
     y: 0,
     speedX: 0,
     speedY: 0,
-    it: true
+    it: true,
+    id: "#walker"
   }
 
   let walker2 = {
@@ -40,7 +37,8 @@ function runProgram(){
     y: $("#board").height() - $("#walker2").height(),
     speedX: 0,
     speedY: 0,
-    it: false
+    it: false,
+    id: "#walker2"
   }
 
   // one-time setup
@@ -54,9 +52,6 @@ function runProgram(){
   */
   $(document).on('keydown', handleKeyDown);
   $(document).on('keyup', handleKeyUp); 
-  
-  $(document).on('keydown', handleKeyDown2);
-  $(document).on('keyup', handleKeyUp2);
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -67,12 +62,12 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {//updates the website 60 times a second
-    repositionGameItem();
-    repositionGameItem2();
-    wallCollision();
-    wallCollision2();
-    redrawGameItem();
-    redrawGameItem2();
+    repositionGameItem(walker);
+    repositionGameItem(walker2);
+    wallCollision(walker);
+    wallCollision(walker2);
+    redrawGameItem(walker);
+    redrawGameItem(walker2);
     tagged(walker, walker2);
 
   }
@@ -93,16 +88,13 @@ function runProgram(){
     } else if (event.which === KEY.DOWN) {
       walker.speedY = 5;
     } 
-  }
-
-  function handleKeyDown2(event) {//registars the the keys to move the 2nd walker being pressed
-    if (event.which === KEY2.LEFT) {
+    if (event.which === KEY.A) {
       walker2.speedX = -5;
-    } else if (event.which === KEY2.RIGHT) {
+    } else if (event.which === KEY.D) {
       walker2.speedX = 5;
-    } else if (event.which === KEY2.UP) {
+    } else if (event.which === KEY.W) {
       walker2.speedY = -5;
-    } else if (event.which === KEY2.DOWN) {
+    } else if (event.which === KEY.S) {
       walker2.speedY = 5;
     }
   }
@@ -116,19 +108,14 @@ function runProgram(){
       walker.speedY = 0;
     } else if (event.which === KEY.DOWN) {
       walker.speedY = 0;
-    } else if (event.which === KEY.ENTER) {
-      
-    }
-  }
-
-  function handleKeyUp2(event) {//registars the key being unpressed to move the 2nd walker
-    if (event.which === KEY2.LEFT) {
+    } 
+    if (event.which === KEY.A) {
       walker2.speedX = 0;
-    } else if (event.which === KEY2.RIGHT) {
+    } else if (event.which === KEY.D) {
       walker2.speedX = 0;
-    } else if (event.which === KEY2.UP) {
+    } else if (event.which === KEY.W) {
       walker2.speedY = 0;
-    } else if (event.which === KEY2.DOWN) {
+    } else if (event.which === KEY.S) {
       walker2.speedY = 0;
     }
   }
@@ -137,53 +124,28 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  function repositionGameItem () {//changes the first walkers position
-    walker.x += walker.speedX;
-    walker.y += walker.speedY;
+  function repositionGameItem (player) {//changes the first walkers position
+    player.x += player.speedX;
+    player.y += player.speedY;
   }
 
-  function repositionGameItem2 () {// changes the 2nd walkers psoition
-    walker2.x += walker2.speedX;
-    walker2.y += walker2.speedY;
+  function redrawGameItem (player) {//updates the 2nd walker
+    $(player.id).css("left", player.x);
+    $(player.id).css("top", player.y);
   }
 
-  function redrawGameItem () {//updates the first walker
-    $("#walker").css("left", walker.x);
-    $("#walker").css("top", walker.y);
-  }
-
-  function redrawGameItem2 () {//updates the 2nd walker
-    $("#walker2").css("left", walker2.x);
-    $("#walker2").css("top", walker2.y);
-  }
-
-  function wallCollision () {//checks if the first walker collides with the wall
-    if (walker.x > $("#board").width() - $("#walker").width()) {
-      walker.x -= walker.speedX;
+  function wallCollision (player) {//checks if the first walker collides with the wall
+    if (player.x > $("#board").width() - $(player.id).width()) {
+      player.x -= player.speedX;
     }
-    if (walker.x < 0) {
-      walker.x -= walker.speedX;
+    if (player.x < 0) {
+      player.x -= player.speedX;
     } 
-    if (walker.y > $("#board").height() - $("#walker").height()) {
-      walker.y -= walker.speedY;
+    if (player.y > $("#board").height() - $(player.id).height()) {
+      player.y -= player.speedY;
     } 
-    if (walker.y < 0) {
-      walker.y -= walker.speedY;
-    }
-  }
-
-  function wallCollision2 () {//checks if the 2nd walker collides with the wall
-    if (walker2.x > $("#board").width() - $("#walker2").width()) {
-      walker2.x -= walker2.speedX;
-    } 
-    if (walker2.x < 0) {
-      walker2.x -= walker2.speedX;
-    } 
-    if (walker2.y > $("#board").height() - $("#walker2").height()) {
-      walker2.y -= walker2.speedY;
-    } 
-    if (walker2.y < 0) {
-      walker2.y -= walker2.speedY;
+    if (player.y < 0) {
+      player.y -= player.speedY;
     }
   }
 
