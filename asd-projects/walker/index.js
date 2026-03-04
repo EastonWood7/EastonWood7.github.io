@@ -160,11 +160,14 @@ function runProgram(){
   function wallCollision () {//checks if the first walker collides with the wall
     if (walker.x > $("#board").width() - $("#walker").width()) {
       walker.x -= walker.speedX;
-    } else if (walker.x < 0) {
+    }
+    if (walker.x < 0) {
       walker.x -= walker.speedX;
-    } else if (walker.y > $("#board").height() - $("#walker").height()) {
+    } 
+    if (walker.y > $("#board").height() - $("#walker").height()) {
       walker.y -= walker.speedY;
-    } else if (walker.y < 0) {
+    } 
+    if (walker.y < 0) {
       walker.y -= walker.speedY;
     }
   }
@@ -172,11 +175,14 @@ function runProgram(){
   function wallCollision2 () {//checks if the 2nd walker collides with the wall
     if (walker2.x > $("#board").width() - $("#walker2").width()) {
       walker2.x -= walker2.speedX;
-    } else if (walker2.x < 0) {
+    } 
+    if (walker2.x < 0) {
       walker2.x -= walker2.speedX;
-    } else if (walker2.y > $("#board").height() - $("#walker2").height()) {
+    } 
+    if (walker2.y > $("#board").height() - $("#walker2").height()) {
       walker2.y -= walker2.speedY;
-    } else if (walker2.y < 0) {
+    } 
+    if (walker2.y < 0) {
       walker2.y -= walker2.speedY;
     }
   }
