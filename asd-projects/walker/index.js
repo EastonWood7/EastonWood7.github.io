@@ -78,7 +78,7 @@ function runProgram(){
   
   Note: You can have multiple event handlers for different types of events.
   */
-  function handleKeyDown(event) {//registars the the keys to move the 1st walker being pressed
+  function handleKeyDown(event) {//registars the the keys to move the walkers being pressed
     if (event.which === KEY.LEFT) {
       walker.speedX = -5;
     } else if (event.which === KEY.RIGHT) {
@@ -99,7 +99,7 @@ function runProgram(){
     }
   }
 
-  function handleKeyUp(event) {//registars the key being unpressed to move the first walker
+  function handleKeyUp(event) {//registars the key being unpressed to move the walkers
     if (event.which === KEY.LEFT) {
       walker.speedX = 0;
     } else if (event.which === KEY.RIGHT) {
@@ -124,17 +124,17 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  function repositionGameItem (player) {//changes the first walkers position
+  function repositionGameItem (player) {//changes the walkers position
     player.x += player.speedX;
     player.y += player.speedY;
   }
 
-  function redrawGameItem (player) {//updates the 2nd walker
+  function redrawGameItem (player) {//updates the walkers
     $(player.id).css("left", player.x);
     $(player.id).css("top", player.y);
   }
 
-  function wallCollision (player) {//checks if the first walker collides with the wall
+  function wallCollision (player) {//checks if the walkers collides with the wall
     if (player.x > $("#board").width() - $(player.id).width()) {
       player.x -= player.speedX;
     }
@@ -159,7 +159,7 @@ function runProgram(){
     
   }
 
-  function changeColor () {//changes the color if they collide
+  function changeColor () {//changes the walkers color if they collide
     if (walker.it === true) {
       $("#walker").css("backgroundColor", "red");
       $("#walker2").css("backgroundColor", "green");
@@ -172,7 +172,7 @@ function runProgram(){
     console.log("You're it");
   }
 
-  function tagged (w1, w2) {
+  function tagged (w1, w2) {//checks if the walkers tag and then changes the color of them
     if (tag(w1, w2)) {
       changeColor();
     }
