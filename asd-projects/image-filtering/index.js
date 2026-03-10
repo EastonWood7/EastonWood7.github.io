@@ -84,13 +84,13 @@ function reddify (pixelArr) {
 
 // TODO 7 & 8: Create more filter functions
 function decreaseBlue (pixelArr) {
-  var newBlue = pixelArr[BLUE] -= 50;
-  pixelArr = keepInBounds(newBlue);
+  var newBlue = pixelArr[BLUE] - 50;
+  pixelArr[BLUE] = keepInBounds(newBlue);
 }
 
 function increaseGreenByBlue (pixelArr) {
-  newGreen = pixelArr[GREEN] += pixelArr[BLUE];
-  pixelArr = keepInBounds(newGreen);
+  var newGreen = pixelArr[GREEN] += pixelArr[BLUE];
+  pixelArr[newGreen] = keepInBounds(newGreen);
 }
 
 // CHALLENGE code goes below here
