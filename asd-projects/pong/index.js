@@ -13,6 +13,23 @@ function runProgram(){
   
   // Game Item Objects
 
+  function gameObj (x, y, width, height, borderRadius, speedX, speedY, id) {
+    var gameObj = {};
+    gameObj.x = parseFloat($(id).css("left"));
+    gameObj.y = parseFloat($(id).css("top"));
+    gameObj.width = width;
+    gameObj.height = height;
+    gameObj.borderRadius = borderRadius;
+    gameObj.speedX = speedX;
+    gameObj.speedY = speedY;
+    gameObj.id = id;
+    return gameObj;
+  }
+
+  var ball = gameObj(200, 200, 20, 20, 10, 1, 1, "#ball");
+  $("#ball").css(ball);
+  console.log(ball);
+
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
