@@ -15,7 +15,7 @@ function runProgram(){
 
   function gameObj (x, y, width, height, borderRadius, speedX, speedY, id) {
     var gameObj = {};
-    gameObj.x = parseFloat($(id).css("left"));
+    gameObj.x = parseFloat($(id).css("left"));//fix this it doesn't update with the function call
     gameObj.y = parseFloat($(id).css("top"));
     gameObj.width = width;
     gameObj.height = height;
