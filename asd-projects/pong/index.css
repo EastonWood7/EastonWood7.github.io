@@ -4,11 +4,13 @@ body {
 }
 
 #board {
-  width: 440px;
-  height: 440px;
+  width: 800px;
+  height: 400px;
   border: 1px solid white;
   background-color: black;
   position: relative;
+  top: 50px;
+  left: 300px; 
 }
 
 #leftPaddle {

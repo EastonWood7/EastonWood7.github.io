@@ -22,10 +22,10 @@ function runProgram(){
   
   // Game Item Objects
 
-  function gameObj (width, height, borderRadius, speedX, speedY, id) {
+  function gameObj (x, y, width, height, borderRadius, speedX, speedY, id) {
     var gameObj = {};
-    gameObj.x = parseFloat($(id).css("left"));//this should work but is something with the x or y doesn't work later on its probably this
-    gameObj.y = parseFloat($(id).css("top"));
+    gameObj.x = x;
+    gameObj.y = y;
     gameObj.width = width;
     gameObj.height = height;
     gameObj.borderRadius = borderRadius;
@@ -38,13 +38,15 @@ function runProgram(){
   const BOARD_WIDTH = $("#board").width();
   const BOARD_HEIGHT = $("#board").height();
 
-  var ball = gameObj(10, 10, 5, 1, 1, "#ball");
+  var ball = gameObj(200, 200, 10, 10, 5, 1, 1, "#ball");
   $("#ball").css(ball);
 
-  var leftPaddle = gameObj(10, 80, 10, 0, 0, "#leftPaddle");
+  var leftPaddle = gameObj(0, 0, 10, 80, 10, 0, 0, "#leftPaddle");
+  leftPaddle.leftScore = 0;
   $("#leftPaddle").css(leftPaddle);
 
-  var rightPaddle = gameObj(10, 80, 10, 0, 0, "#rightPaddle");
+  var rightPaddle = gameObj(BOARD_WIDTH - 10, 0, 10, 80, 10, 0, 0, "#rightPaddle");
+  rightPaddle.rightScore = 0;
   $("#rightPaddle").css(rightPaddle);
 
   // one-time setup
@@ -86,14 +88,14 @@ function runProgram(){
 
   function handleKeyDown(event) {
     if (event.which === KEY.UP) {
-      rightPaddle.speedY = -3;
+      rightPaddle.speedY = -4;
     } else if (event.which === KEY.DOWN) {
-      rightPaddle.speedY = 3;
+      rightPaddle.speedY = 4;
     }
     if (event.which === KEY.W) {
-      leftPaddle.speedY = -3;
+      leftPaddle.speedY = -4;
     } else if (event.which === KEY.S) {
-      leftPaddle.speedY = 3;
+      leftPaddle.speedY = 4;
     }
   }
 
@@ -122,12 +124,31 @@ function runProgram(){
     $(obj.id).css("top", obj.y);
   }
 
-  function wallCollision (obj) {
-    if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {
-      obj.speedX = -obj.speedX
-    }
-    if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {
-      obj.speedY = -obj.speedY
+  function wallCollision (obj) {//controls collisions and points being scored
+    if (obj.id === "#ball") {
+      if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {
+        if (obj.x < 0) {
+          leftPaddle.leftScore += 1;
+          $("#player1Score").html("left:" + leftPaddle.leftScore);
+        }
+        if (obj.x + obj.width > BOARD_WIDTH) {
+          rightPaddle.rightScore += 1;
+          $("#player2Score").html("right:" + rightPaddle.rightScore);
+        }
+        startBall();
+        obj.x = BOARD_WIDTH / 2;
+        obj.y = BOARD_HEIGHT / 2;
+      }
+      if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {
+        obj.speedY = -obj.speedY
+      }
+    } else {
+      if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {
+        obj.x -= obj.speedX
+      }
+      if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {
+        obj.y -= obj.speedY
+      }
     }
   }
   
