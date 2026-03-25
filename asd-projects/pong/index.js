@@ -185,7 +185,7 @@ function runProgram(){
     }
   }
   
-  function endGame() {
+  function endGame() {//ends the game
     // stop the interval timer
     clearInterval(interval);
 
