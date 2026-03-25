@@ -73,6 +73,7 @@ function runProgram(){
     wallCollision(ball);
     wallCollision(leftPaddle);
     wallCollision(rightPaddle);
+    hitBall();
   }
   
   /* 
@@ -122,6 +123,15 @@ function runProgram(){
     $(obj.id).css("left", obj.x);
     obj.y += obj.speedY;
     $(obj.id).css("top", obj.y);
+  }
+
+  function hitBall() {
+    if (ball.x <= leftPaddle.x + leftPaddle.width && ball.y >= leftPaddle.y && ball.y <= leftPaddle.y + leftPaddle.height) {
+      ball.speedX = -ball.speedX;
+    }
+    if (ball.x >= rightPaddle.x - rightPaddle.width && ball.y >= rightPaddle.y && ball.y <= rightPaddle.y + rightPaddle.height) {
+      ball.speedX = -ball.speedX;
+    }
   }
 
   function wallCollision (obj) {//controls collisions and points being scored
