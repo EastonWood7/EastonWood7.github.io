@@ -74,6 +74,8 @@ function runProgram(){
     wallCollision(leftPaddle);
     wallCollision(rightPaddle);
     hitBall();
+    changeBackBorderColor();
+    winGame();
   }
   
   /* 
@@ -139,11 +141,13 @@ function runProgram(){
       if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {
         if (obj.x < 0) {
           leftPaddle.leftScore += 1;
-          $("#player1Score").html("left:" + leftPaddle.leftScore);
+          $("#player1Score").html("right:" + leftPaddle.leftScore);
+          $("#board").css("border-color", "yellow");
         }
         if (obj.x + obj.width > BOARD_WIDTH) {
           rightPaddle.rightScore += 1;
-          $("#player2Score").html("right:" + rightPaddle.rightScore);
+          $("#player2Score").html("left:" + rightPaddle.rightScore);
+          $("#board").css("border-color", "yellow");
         }
         startBall();
         obj.x = BOARD_WIDTH / 2;
@@ -159,6 +163,22 @@ function runProgram(){
       if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {
         obj.y -= obj.speedY
       }
+    }
+  }
+
+  function changeBackBorderColor () {
+    if (ball.x > BOARD_WIDTH * .6 || ball.x < BOARD_WIDTH * .4) {
+      $("#board").css("border-color", "white");
+    }
+  }
+
+  function winGame () {
+    if (leftPaddle.leftScore === 5) {
+      $("#winner").html("left wins!!!");
+      endGame();
+    } else if (rightPaddle.rightScore === 5) {
+      $("#winner").html("right wins!!!");
+      endGame();
     }
   }
   
