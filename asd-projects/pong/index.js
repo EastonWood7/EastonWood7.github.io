@@ -38,14 +38,14 @@ function runProgram(){
   const BOARD_WIDTH = $("#board").width();
   const BOARD_HEIGHT = $("#board").height();
 
-  var ball = gameObj(200, 200, 10, 10, 5, 1, 1, "#ball");
+  var ball = gameObj(200, 200, 10, 10, 5, 1, 1, "#ball");//defines the ball variable 
   $("#ball").css(ball);
 
-  var leftPaddle = gameObj(0, 0, 10, 80, 10, 0, 0, "#leftPaddle");
+  var leftPaddle = gameObj(0, 0, 10, 80, 10, 0, 0, "#leftPaddle");//defines the left paddle variables
   leftPaddle.leftScore = 0;
   $("#leftPaddle").css(leftPaddle);
 
-  var rightPaddle = gameObj(BOARD_WIDTH - 10, 0, 10, 80, 10, 0, 0, "#rightPaddle");
+  var rightPaddle = gameObj(BOARD_WIDTH - 10, 0, 10, 80, 10, 0, 0, "#rightPaddle");//defines the right paddle variables
   rightPaddle.rightScore = 0;
   $("#rightPaddle").css(rightPaddle);
 
@@ -143,11 +143,13 @@ function runProgram(){
           leftPaddle.leftScore += 1;
           $("#player1Score").html("right:" + leftPaddle.leftScore);
           $("#board").css("border-color", "yellow");
+          $("#boardLine").css("background-color", "yellow");
         }
         if (obj.x + obj.width > BOARD_WIDTH) {
           rightPaddle.rightScore += 1;
           $("#player2Score").html("left:" + rightPaddle.rightScore);
           $("#board").css("border-color", "yellow");
+          $("#boardLine").css("background-color", "yellow");
         }
         startBall();
         obj.x = BOARD_WIDTH / 2;
@@ -166,18 +168,19 @@ function runProgram(){
     }
   }
 
-  function changeBackBorderColor () {
+  function changeBackBorderColor () {//changes the border color back after changing it yellow for someone scoring
     if (ball.x > BOARD_WIDTH * .6 || ball.x < BOARD_WIDTH * .4) {
       $("#board").css("border-color", "white");
+      $("#boardLine").css("background-color", "white");
     }
   }
 
-  function winGame () {
+  function winGame () {//ends game when someone gets 5 points
     if (leftPaddle.leftScore === 5) {
-      $("#winner").html("left wins!!!");
+      $("#winner").html("right wins!!!");
       endGame();
     } else if (rightPaddle.rightScore === 5) {
-      $("#winner").html("right wins!!!");
+      $("#winner").html("left wins!!!");
       endGame();
     }
   }

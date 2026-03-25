@@ -13,6 +13,15 @@ body {
   left: 300px; 
 }
 
+#boardLine {
+  width: 5px;
+  height: 400px;
+  background-color: white;
+  position: relative;
+  top: 0px;
+  left: 400px; 
+}
+
 #leftPaddle {
   background-color: white;
   width: 10px;
@@ -43,5 +52,32 @@ body {
   position: absolute;
   top: 200px;
   left: 200px;
+}
 
+#gameName {
+  color: yellow;
+  position: absolute;
+  top: 5px;
+  left: 670px;
+}
+
+#player1Score {
+  color: white;
+  position: absolute;
+  top: 400px;
+  left: 730px;
+}
+
+#player2Score {
+  color: white;
+  position: absolute;
+  top: 400px;
+  left: 625px;
+}
+
+#winner {
+  color: white;
+  position: absolute;
+  top: 200px;
+  left: 650px;
 }
