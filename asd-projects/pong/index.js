@@ -22,7 +22,7 @@ function runProgram(){
   
   // Game Item Objects
 
-  function gameObj (x, y, width, height, borderRadius, speedX, speedY, id) {
+  function gameObj (x, y, width, height, borderRadius, speedX, speedY, id) {//creates game objects
     var gameObj = {};
     gameObj.x = x;
     gameObj.y = y;
@@ -66,7 +66,7 @@ function runProgram(){
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
-  function newFrame() {
+  function newFrame() {//calls the functions 60 times a second
     moveStuff(ball);
     moveStuff(leftPaddle);
     moveStuff(rightPaddle);
@@ -87,7 +87,7 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  function handleKeyDown(event) {
+  function handleKeyDown(event) {//handles keys being pressed down
     if (event.which === KEY.UP) {
       rightPaddle.speedY = -4;
     } else if (event.which === KEY.DOWN) {
@@ -100,7 +100,7 @@ function runProgram(){
     }
   }
 
-  function handleKeyUp(event) {
+  function handleKeyUp(event) {//registars keys being unpressed
     if (event.which === KEY.UP) {
       rightPaddle.speedY = 0;
     } else if (event.which === KEY.DOWN) {
@@ -113,19 +113,19 @@ function runProgram(){
     }
   }
 
-  function startBall () {
+  function startBall () {//gives the ball a random speed
     ball.speedX = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
     ball.speedY = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
   }
 
-  function moveStuff(obj) {
+  function moveStuff(obj) {//moves things
     obj.x += obj.speedX;
     $(obj.id).css("left", obj.x);
     obj.y += obj.speedY;
     $(obj.id).css("top", obj.y);
   }
 
-  function hitBall() {
+  function hitBall() {//controls paddle and ball collision
     if (ball.x <= leftPaddle.x + leftPaddle.width && ball.y >= leftPaddle.y && ball.y <= leftPaddle.y + leftPaddle.height) {
       ball.speedX = -ball.speedX;
     }
