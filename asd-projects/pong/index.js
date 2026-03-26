@@ -76,6 +76,7 @@ function runProgram(){
     hitBall();
     changeBackBorderColor();
     winGame();
+    bot();
   }
   
   /* 
@@ -112,6 +113,22 @@ function runProgram(){
       leftPaddle.speedY = 0;
     } else if (event.which === KEY.S) {
       leftPaddle.speedY = 0;
+    }
+  }
+
+  function bot () {
+    if (ball.y !== leftPaddle.y) {
+      if (ball.x <= BOARD_WIDTH / 2) {
+        leftPaddle.speedY = ball.y - (leftPaddle.y + (leftPaddle.height / 2));
+      } else {
+        returnBot();
+      }
+    }
+  }
+
+  function returnBot () {
+    if (leftPaddle.y !== (BOARD_HEIGHT / 2) - (leftPaddle.height / 2)) {
+      leftPaddle.y = (BOARD_HEIGHT / 2) - (leftPaddle.height / 2)
     }
   }
 
