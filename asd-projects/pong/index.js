@@ -11,7 +11,7 @@ function runProgram(){
   const FRAME_RATE = 60;
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
 
-  var KEY = {
+  var KEY = {//defines what keys are in their number values 
     UP: 38,
     DOWN: 40,
     W: 87,
@@ -35,8 +35,8 @@ function runProgram(){
     return gameObj;
   }
 
-  const BOARD_WIDTH = $("#board").width();
-  const BOARD_HEIGHT = $("#board").height();
+  const BOARD_WIDTH = $("#board").width();//defines the board width
+  const BOARD_HEIGHT = $("#board").height();//defines the board height
 
   var ball = gameObj(200, 200, 10, 10, 5, 1, 1, "#ball");//defines the ball variable 
   $("#ball").css(ball);
@@ -56,7 +56,7 @@ function runProgram(){
   $(document).on('keydown', handleKeyDown);
   $(document).on('keyup', handleKeyUp); 
 
-  startBall();
+  startBall();//starts the ball at the very start of the game
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -130,9 +130,13 @@ function runProgram(){
   function hitBall() {//controls paddle and ball collision
     if (ball.x <= leftPaddle.x + leftPaddle.width && ball.y >= leftPaddle.y && ball.y <= leftPaddle.y + leftPaddle.height) {
       ball.speedX = -ball.speedX;
+      ball.speedX *= 1.1;
+      ball.speedY *= 1.1;
     }
     if (ball.x >= rightPaddle.x - rightPaddle.width && ball.y >= rightPaddle.y && ball.y <= rightPaddle.y + rightPaddle.height) {
       ball.speedX = -ball.speedX;
+      ball.speedX *= 1.1;
+      ball.speedY *= 1.1;
     }
   }
 
