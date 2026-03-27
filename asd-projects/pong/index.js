@@ -49,6 +49,8 @@ function runProgram(){
   rightPaddle.rightScore = 0;
   $("#rightPaddle").css(rightPaddle);
 
+  var botOn = false;
+
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('eventType', handleEvent);                           // change 'eventType' to the type of event you want to handle
@@ -116,17 +118,29 @@ function runProgram(){
     }
   }
 
-  function bot () {
-    if (ball.y !== leftPaddle.y) {
-      if (ball.x <= BOARD_WIDTH / 2) {
-        leftPaddle.speedY = ball.y - (leftPaddle.y + (leftPaddle.height / 2));
-      } else {
-        returnBot();
+  $("#botButton").on("click", toggleBot);//registers the button click and starts the toggle button function
+
+  function toggleBot () {//toggles on and off the bot based on the button
+     if (botOn === false) {
+      botOn = true;
+     } else if (botOn === true) {
+      botOn = false;
+     }
+   }
+
+  function bot () {//creates the bot tracking for the ball
+    if (botOn === true) {
+      if (ball.y !== leftPaddle.y) {
+        if (ball.x <= BOARD_WIDTH / 2) {
+          leftPaddle.speedY = ball.y - (leftPaddle.y + (leftPaddle.height / 2));
+        } else {
+          returnBot();
+        }
       }
     }
   }
 
-  function returnBot () {
+  function returnBot () {//returns the bot after the ball crosses sides
     if (leftPaddle.y !== (BOARD_HEIGHT / 2) - (leftPaddle.height / 2)) {
       leftPaddle.y = (BOARD_HEIGHT / 2) - (leftPaddle.height / 2)
     }
