@@ -57,27 +57,36 @@ body {
 #gameName {
   color: yellow;
   position: absolute;
-  top: 5px;
+  top: 60px;
   left: 670px;
 }
 
 #player1Score {
   color: white;
   position: absolute;
-  top: 400px;
+  top: 450px;
   left: 730px;
 }
 
 #player2Score {
   color: white;
   position: absolute;
-  top: 400px;
+  top: 450px;
   left: 625px;
 }
 
 #winner {
   color: white;
   position: absolute;
-  top: 200px;
+  top: 250px;
   left: 650px;
+}
+
+#botText {
+  font-size: 15px;
+  color: grey;
+}
+#botText2 {
+  font-size: 15px;
+  color: grey;
 }

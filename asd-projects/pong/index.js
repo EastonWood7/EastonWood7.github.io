@@ -49,7 +49,10 @@ function runProgram(){
   rightPaddle.rightScore = 0;
   $("#rightPaddle").css(rightPaddle);
 
-  var botOn = false;
+  var botOn = false;//bots logic variables
+  var difficulty = prompt("bot difficulty: 1-3 (1 is hardest)")
+
+  var neededWins = 5;
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -93,27 +96,27 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   function handleKeyDown(event) {//handles keys being pressed down
-    if (event.which === KEY.UP) {
+    if (event.which === KEY.UP) {//registars up key
       rightPaddle.speedY = -4;
-    } else if (event.which === KEY.DOWN) {
+    } else if (event.which === KEY.DOWN) {//registars down key
       rightPaddle.speedY = 4;
     }
-    if (event.which === KEY.W) {
+    if (event.which === KEY.W) {//registars w key
       leftPaddle.speedY = -4;
-    } else if (event.which === KEY.S) {
+    } else if (event.which === KEY.S) {//registars s key
       leftPaddle.speedY = 4;
     }
   }
 
   function handleKeyUp(event) {//registars keys being unpressed
-    if (event.which === KEY.UP) {
+    if (event.which === KEY.UP) {//registars up key
       rightPaddle.speedY = 0;
-    } else if (event.which === KEY.DOWN) {
+    } else if (event.which === KEY.DOWN) {//registars down key
       rightPaddle.speedY = 0;
     }
-    if (event.which === KEY.W) {
+    if (event.which === KEY.W) {//registars w key
       leftPaddle.speedY = 0;
-    } else if (event.which === KEY.S) {
+    } else if (event.which === KEY.S) {//registars s key
       leftPaddle.speedY = 0;
     }
   }
@@ -121,19 +124,24 @@ function runProgram(){
   $("#botButton").on("click", toggleBot);//registers the button click and starts the toggle button function
 
   function toggleBot () {//toggles on and off the bot based on the button
-     if (botOn === false) {
+     if (botOn === false) {//truns on the bot
       botOn = true;
-     } else if (botOn === true) {
+     } else if (botOn === true) {//turns off the bot
       botOn = false;
      }
    }
 
   function bot () {//creates the bot tracking for the ball
-    if (botOn === true) {
-      if (ball.y !== leftPaddle.y) {
+    if (botOn === true) {//checks if the bot is on
+      if (ball.y !== leftPaddle.y) {//checks if the paddle and ball are in line with each other
         if (ball.x <= BOARD_WIDTH / 2) {
-          leftPaddle.speedY = ball.y - (leftPaddle.y + (leftPaddle.height / 2));
-        } else {
+          leftPaddle.y += ((ball.y - leftPaddle.y) / 4) - (leftPaddle.height / (difficulty + 1));//determines position 
+          if (leftPaddle.y < 0) {//makes sure it doesn't go off of the top of the board
+            leftPaddle.y = 0;
+          } else if (leftPaddle.y >= BOARD_HEIGHT - leftPaddle.height) {//makes sure it doesn't go off the bottom of the board
+            leftPaddle.y = BOARD_HEIGHT - leftPaddle.height;
+          }
+        } else {//returns the bot to the middle when the ball isn't on its side
           returnBot();
         }
       }
@@ -158,13 +166,13 @@ function runProgram(){
     $(obj.id).css("top", obj.y);
   }
 
-  function hitBall() {//controls paddle and ball collision
-    if (ball.x <= leftPaddle.x + leftPaddle.width && ball.y >= leftPaddle.y && ball.y <= leftPaddle.y + leftPaddle.height) {
+  function hitBall() {//controls paddle and ball collision and also speeds up the ball
+    if (ball.x <= leftPaddle.x + leftPaddle.width && ball.y >= leftPaddle.y && ball.y <= leftPaddle.y + leftPaddle.height) {//checks if the left paddle hits the ball and redirects it
       ball.speedX = -ball.speedX;
       ball.speedX *= 1.1;
       ball.speedY *= 1.1;
     }
-    if (ball.x >= rightPaddle.x - rightPaddle.width && ball.y >= rightPaddle.y && ball.y <= rightPaddle.y + rightPaddle.height) {
+    if (ball.x >= rightPaddle.x - rightPaddle.width && ball.y >= rightPaddle.y && ball.y <= rightPaddle.y + rightPaddle.height) {//checks if the right paddle hits the ball and redirects it
       ball.speedX = -ball.speedX;
       ball.speedX *= 1.1;
       ball.speedY *= 1.1;
@@ -172,49 +180,49 @@ function runProgram(){
   }
 
   function wallCollision (obj) {//controls collisions and points being scored
-    if (obj.id === "#ball") {
-      if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {
-        if (obj.x < 0) {
+    if (obj.id === "#ball") {//checks for just the ablls position
+      if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {//checks to see if the ball is in the goal
+        if (obj.x < 0) {//checks left goal
           leftPaddle.leftScore += 1;
           $("#player1Score").html("right:" + leftPaddle.leftScore);
           $("#board").css("border-color", "yellow");
           $("#boardLine").css("background-color", "yellow");
         }
-        if (obj.x + obj.width > BOARD_WIDTH) {
+        if (obj.x + obj.width > BOARD_WIDTH) {//checks right goal
           rightPaddle.rightScore += 1;
           $("#player2Score").html("left:" + rightPaddle.rightScore);
           $("#board").css("border-color", "yellow");
           $("#boardLine").css("background-color", "yellow");
         }
-        startBall();
-        obj.x = BOARD_WIDTH / 2;
-        obj.y = BOARD_HEIGHT / 2;
+        startBall();//restarts the ball after scoring
+        obj.x = BOARD_WIDTH / 2;//gives the restarted ball x
+        obj.y = BOARD_HEIGHT / 2;//gives the restarted ball y
       }
-      if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {
+      if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {//redirects the ball y when hitting a wall
         obj.speedY = -obj.speedY
       }
     } else {
-      if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {
+      if (obj.x + obj.width > BOARD_WIDTH || obj.x < 0) {//keeps the paddle x in the board
         obj.x -= obj.speedX
       }
-      if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {
+      if (obj.y + obj.height > BOARD_HEIGHT || obj.y < 0) {//keeps the paddle y in the board
         obj.y -= obj.speedY
       }
     }
   }
 
   function changeBackBorderColor () {//changes the border color back after changing it yellow for someone scoring
-    if (ball.x > BOARD_WIDTH * .6 || ball.x < BOARD_WIDTH * .4) {
+    if (ball.x > BOARD_WIDTH * .6 || ball.x < BOARD_WIDTH * .4) {//determines if the ball is far enough from the center to change the color back
       $("#board").css("border-color", "white");
       $("#boardLine").css("background-color", "white");
     }
   }
 
   function winGame () {//ends game when someone gets 5 points
-    if (leftPaddle.leftScore === 5) {
+    if (leftPaddle.leftScore === neededWins) {//determines right win
       $("#winner").html("right wins!!!");
       endGame();
-    } else if (rightPaddle.rightScore === 5) {
+    } else if (rightPaddle.rightScore === neededWins) {//determines left win
       $("#winner").html("left wins!!!");
       endGame();
     }
